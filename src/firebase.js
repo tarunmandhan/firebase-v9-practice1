@@ -7,6 +7,7 @@ const firebaseConfig = {
   storageBucket: "fir-v9-practice1.appspot.com",
   messagingSenderId: "90951468357",
   appId: "1:90951468357:web:1cfef13dfcccc4c221aa2c",
+  databaseURL: "https://fir-v9-practice1-default-rtdb.firebaseio.com",
 };
 
 export const app = initializeApp(firebaseConfig);
