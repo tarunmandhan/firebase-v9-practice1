@@ -1,11 +1,12 @@
 import { React, useEffect, useState } from "react";
-// import { getDatabase, ref, set } from "firebase/database";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import { getFirestore, collection, addDoc } from "firebase/firestore";
 import { app } from "./firebase";
 import SignupPage from "./pages/Signup";
 import SigninPage from "./pages/Signin";
 
 const auth = getAuth(app);
+const firestore = getFirestore(app);
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -30,12 +31,26 @@ const App = () => {
     );
   }
 
+  const writeData = async () => {
+    const result = await addDoc(collection(firestore, "cities"), {
+      name: "delhi",
+      pincode: 110011,
+      lat: 12345,
+      long: 6789,
+    });
+    console.log("Result", result);
+  };
+
   return (
     <>
       <div className="app">
         <h1>Hello {user.email}</h1>
         <br />
         <button onClick={() => signOut(auth)}>Sign Out</button>
+        <br />
+        <br />
+        <h1>firebase Firestore</h1>
+        <button onClick={writeData}>Add Data</button>
       </div>
     </>
   );
