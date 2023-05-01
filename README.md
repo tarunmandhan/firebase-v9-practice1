@@ -26,8 +26,8 @@
 1. Enable email/Password services in firebase authentication options.
 2. import {getAuth} from "firebase/auth";
    import {app} from "../firebase";
-2.1 const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+   2.1 const [email, setEmail] = useState("");
+   const [password, setPassword] = useState("");
 3. create intance of auth.
    const auth = getauth(app);
 4. import {getAuth, createUserWithEmailAndPassword} from "firebase/auth";
@@ -43,8 +43,8 @@
 
 1. import { getAuth } from "firebase/auth";
    import {app} from "../firebase";
-1.1 const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+   1.1 const [email, setEmail] = useState("");
+   const [password, setPassword] = useState("");
 2. create intance of auth.
    const auth = getauth(app);
 3. import {getAuth, signInWithEmailAndPassword} from "firebase/auth";
@@ -54,4 +54,20 @@
 5. create button and use onClick event calling to putdata.
    <button onClick={signinUser}>Sign up</button>
 
-# Now
+# Now how to signup with Google account directly
+
+1. create button name:- signup with Google
+2. import GoogleAuthProvider
+   import { GoogleAuthProvider } from "firebase/auth";
+3. Create intance of GoogleAuthProvider
+   const googleProvider = new GoogleAuthProvider();
+4. import SignInWithPopup
+   import { SignInWithPopup } from "firebase/auth";
+5. create function
+   const signupWithGoogle = () => {
+    signInWithPopup(auth, googleProvider);
+  };
+6. Add onClick event 
+   onClick={signupWithGoogle}
+
+# Now 
