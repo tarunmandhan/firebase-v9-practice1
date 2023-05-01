@@ -9,10 +9,12 @@ import {
   query,
   where,
   getDocs,
+  updateDoc,
 } from "firebase/firestore";
 import { app } from "./firebase";
 import SignupPage from "./pages/Signup";
 import SigninPage from "./pages/Signin";
+import { async } from "@firebase/util";
 
 const auth = getAuth(app);
 const firestore = getFirestore(app);
@@ -71,6 +73,13 @@ const App = () => {
     snapshot.forEach((data) => console.log(data.data()));
   };
 
+  const update = async () => {
+    const docRef = doc(firestore, "cities", "Tklpt9r2MLKwKEDcCULX");
+    await updateDoc(docRef, {
+      name: "New Delhi",
+    });
+  };
+
   return (
     <>
       <div className="app">
@@ -84,6 +93,7 @@ const App = () => {
         <button onClick={makeSubCollection}>Add sub Data</button>
         <button onClick={getDocument}>Get Document</button>
         <button onClick={getDocumentsByQuery}>Get Docs by Query</button>
+        <button onClick={update}>Update</button>
       </div>
     </>
   );
