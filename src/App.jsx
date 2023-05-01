@@ -41,6 +41,14 @@ const App = () => {
     console.log("Result", result);
   };
 
+  const makeSubCollection = async () => {
+    await addDoc(collection(firestore, "cities/Tklpt9r2MLKwKEDcCULX/places2"), {
+      name: "patel",
+      destrict: "karolbagh",
+      date: Date.now(),
+    });
+  };
+
   return (
     <>
       <div className="app">
@@ -51,6 +59,7 @@ const App = () => {
         <br />
         <h1>firebase Firestore</h1>
         <button onClick={writeData}>Add Data</button>
+        <button onClick={makeSubCollection}>Add sub Data</button>
       </div>
     </>
   );
