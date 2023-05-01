@@ -34,6 +34,8 @@ const App = () => {
     <>
       <div className="app">
         <h1>Hello {user.email}</h1>
+        <br />
+        <button onClick={() => signOut(auth)}>Sign Out</button>
       </div>
     </>
   );

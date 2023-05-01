@@ -65,41 +65,49 @@
    import { SignInWithPopup } from "firebase/auth";
 5. create function
    const signupWithGoogle = () => {
-    signInWithPopup(auth, googleProvider);
-  };
-6. Add onClick event 
+   signInWithPopup(auth, googleProvider);
+   };
+6. Add onClick event
    onClick={signupWithGoogle}
 
 # Now how to detect current user login
+
 1. import { getAuth, onAuthStateChanged } from "firebase/auth";
 2. const [user, setUser] = useState(null);
 
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setUser(user);
-      } else {
-        // user logged out
-        setUser(null);
-      }
-    });
-  }, []);
-  if (user === null) {
-    return (
-      <div className="app">
-        <SignupPage />
-        <SigninPage />
-      </div>
-    );
-  }
+useEffect(() => {
+onAuthStateChanged(auth, (user) => {
+if (user) {
+setUser(user);
+} else {
+// user logged out
+setUser(null);
+}
+});
+}, []);
+if (user === null) {
+return (
 
-  return (
-    <>
-      <div className="app">
-        <h1>Hello {user.email}</h1>
-      </div>
-    </>
-  );
+<div className="app">
+<SignupPage />
+<SigninPage />
+</div>
+);
+}
+
+return (
+<>
+
+<div className="app">
+<h1>Hello {user.email}</h1>
+</div>
+</>
+);
 };
 
-# Now 
+# Now SignOut button
+
+1. import signOut
+2. <button onClick={() => signOut(auth)}>Sign Out</button>
+
+# Now
