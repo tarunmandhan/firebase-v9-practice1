@@ -1,6 +1,12 @@
 import { React, useEffect, useState } from "react";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
-import { getFirestore, collection, addDoc } from "firebase/firestore";
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  doc,
+  getDoc,
+} from "firebase/firestore";
 import { app } from "./firebase";
 import SignupPage from "./pages/Signup";
 import SigninPage from "./pages/Signin";
@@ -49,6 +55,12 @@ const App = () => {
     });
   };
 
+  const getDocument = async () => {
+    const ref = doc(firestore, "cities", "Tklpt9r2MLKwKEDcCULX");
+    const snap = await getDoc(ref);
+    console.log(snap.data());
+  };
+
   return (
     <>
       <div className="app">
@@ -60,6 +72,7 @@ const App = () => {
         <h1>firebase Firestore</h1>
         <button onClick={writeData}>Add Data</button>
         <button onClick={makeSubCollection}>Add sub Data</button>
+        <button onClick={getDocument}>Get Document</button>
       </div>
     </>
   );
