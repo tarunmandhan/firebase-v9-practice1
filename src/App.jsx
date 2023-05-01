@@ -1,24 +1,39 @@
-import React from "react";
+import { React, useEffect, useState } from "react";
 // import { getDatabase, ref, set } from "firebase/database";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import { app } from "./firebase";
 import SignupPage from "./pages/Signup";
 import SigninPage from "./pages/Signin";
 
-// const db = getDatabase(app); // this db is instance, interact with database .
+const auth = getAuth(app);
+
 const App = () => {
-  // const putData = () => {
-  //   set(ref(db, "users/tarun"), {
-  //     id: 1,
-  //     name: "Tarun Mandhan",
-  //     age: 34,
-  //   });
-  // };
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user);
+      } else {
+        // user logged out
+        console.log("You are Sign Out");
+        setUser(null);
+      }
+    });
+  }, []);
+  if (user === null) {
+    return (
+      <div className="app">
+        <SignupPage />
+        <SigninPage />
+      </div>
+    );
+  }
+
   return (
     <>
       <div className="app">
-        <h1>Hello Tarun</h1>
-        {/* <button onClick={putData}>Put Data</button> */}
-        <SignupPage />
-        <SigninPage />
+        <h1>Hello {user.email}</h1>
       </div>
     </>
   );

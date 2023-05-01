@@ -70,4 +70,36 @@
 6. Add onClick event 
    onClick={signupWithGoogle}
 
+# Now how to detect current user login
+1. import { getAuth, onAuthStateChanged } from "firebase/auth";
+2. const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUser(user);
+      } else {
+        // user logged out
+        setUser(null);
+      }
+    });
+  }, []);
+  if (user === null) {
+    return (
+      <div className="app">
+        <SignupPage />
+        <SigninPage />
+      </div>
+    );
+  }
+
+  return (
+    <>
+      <div className="app">
+        <h1>Hello {user.email}</h1>
+      </div>
+    </>
+  );
+};
+
 # Now 
