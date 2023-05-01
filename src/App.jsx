@@ -6,6 +6,9 @@ import {
   addDoc,
   doc,
   getDoc,
+  query,
+  where,
+  getDocs,
 } from "firebase/firestore";
 import { app } from "./firebase";
 import SignupPage from "./pages/Signup";
@@ -61,6 +64,13 @@ const App = () => {
     console.log(snap.data());
   };
 
+  const getDocumentsByQuery = async () => {
+    const collectionRef = collection(firestore, "users");
+    const q = query(collectionRef, where("ismale", "==", true));
+    const snapshot = await getDocs(q);
+    snapshot.forEach((data) => console.log(data.data()));
+  };
+
   return (
     <>
       <div className="app">
@@ -73,6 +83,7 @@ const App = () => {
         <button onClick={writeData}>Add Data</button>
         <button onClick={makeSubCollection}>Add sub Data</button>
         <button onClick={getDocument}>Get Document</button>
+        <button onClick={getDocumentsByQuery}>Get Docs by Query</button>
       </div>
     </>
   );
