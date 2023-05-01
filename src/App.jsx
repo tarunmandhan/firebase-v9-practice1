@@ -1,6 +1,7 @@
 import React from "react";
 // import { getDatabase, ref, set } from "firebase/database";
 import SignupPage from "./pages/Signup";
+import SigninPage from "./pages/Signin";
 
 // const db = getDatabase(app); // this db is instance, interact with database .
 const App = () => {
@@ -11,13 +12,13 @@ const App = () => {
   //     age: 34,
   //   });
   // };
-
   return (
     <>
       <div className="app">
         <h1>Hello Tarun</h1>
         {/* <button onClick={putData}>Put Data</button> */}
         <SignupPage />
+        <SigninPage />
       </div>
     </>
   );
