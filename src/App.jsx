@@ -14,7 +14,6 @@ import {
 import { app } from "./firebase";
 import SignupPage from "./pages/Signup";
 import SigninPage from "./pages/Signin";
-import { async } from "@firebase/util";
 
 const auth = getAuth(app);
 const firestore = getFirestore(app);
